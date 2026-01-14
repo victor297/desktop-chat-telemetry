@@ -33,9 +33,11 @@ Main Process
 │ │ • Network interface detection
 │ │ • Platform-specific APIs
 │ └───────────────────────────────────┘
-│ ↑ ↓
+│ ┌───────────────────────────────────┐
+| ↑ ↓
 │ IPC IPC
 │ ↓ ↑
+| └───────────────────────────────────┘
 │ ┌───────────────────────────────────┐
 │ │ Renderer Process (UI)
 │ │ • Chat interface
@@ -66,5 +68,8 @@ git clone <repository-url>
 cd desktop-chat-telemetry
 npm install
 ```
+
+# desktop-chat-telemetry
+
 # desktop-chat-telemetry
 # desktop-chat-telemetry
