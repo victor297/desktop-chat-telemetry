@@ -21,7 +21,6 @@ function createWindow() {
 
   mainWindow.loadFile(path.join(__dirname, "renderer/index.html"));
 
-  // Open DevTools in development
   if (process.env.NODE_ENV === "development") {
     mainWindow.webContents.openDevTools();
   }
@@ -89,13 +88,10 @@ function createMenu() {
   Menu.setApplicationMenu(menu);
 }
 
-// IPC Handlers
 function setupIPC() {
-  // Handle chat messages from renderer
   ipcMain.handle("send-message", async (event, messageData) => {
     logger.log("Message received:", messageData);
 
-    // Simulate some processing delay
     await new Promise((resolve) => setTimeout(resolve, 50));
 
     return {
@@ -106,16 +102,13 @@ function setupIPC() {
     };
   });
 
-  // Handle telemetry requests
   ipcMain.handle("get-telemetry", async () => {
     return await telemetryCollector.collectTelemetry();
   });
 
-  // Handle telemetry control
   ipcMain.on("start-telemetry", () => telemetryCollector.start());
   ipcMain.on("stop-telemetry", () => telemetryCollector.stop());
 
-  // Handle app events
   ipcMain.on("app-info", (event) => {
     event.reply("app-info-response", {
       version: app.getVersion(),
@@ -128,9 +121,7 @@ function setupIPC() {
 app.whenReady().then(() => {
   createWindow();
 
-  // Initialize telemetry collector
   telemetryCollector = new TelemetryCollector((data) => {
-    // Send telemetry data to renderer when collected
     if (mainWindow && !mainWindow.isDestroyed()) {
       mainWindow.webContents.send("telemetry-data", data);
     }
@@ -138,7 +129,6 @@ app.whenReady().then(() => {
 
   setupIPC();
 
-  // Start telemetry collection
   telemetryCollector.start();
 
   app.on("activate", () => {
