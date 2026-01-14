@@ -1,0 +1,65 @@
+{
+  "name": "desktop-chat-telemetry",
+  "version": "1.0.0",
+  "description": "Desktop Chat Client with System Telemetry",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --debug",
+    "clean": "rm -rf dist",
+    "build": "electron-builder --win",
+    "build:win": "electron-builder --win --x64",
+    "build:win-portable": "electron-builder --win --portable",
+    "build:win-32": "electron-builder --win --ia32",
+    "build:win-all": "electron-builder --win --x64 --ia32",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "keywords": [
+    "electron",
+    "chat",
+    "telemetry",
+    "system-monitor"
+  ],
+  "author": "Desktop Engineer Assessment",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "systeminformation": "^5.18.13"
+  },
+  "build": {
+    "appId": "com.desktopchat.telemetry",
+    "productName": "Desktop Chat & Telemetry",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Desktop Chat",
+      "uninstallDisplayName": "Desktop Chat & Telemetry",
+      "deleteAppDataOnUninstall": false
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}

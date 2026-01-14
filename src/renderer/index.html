@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desktop Chat & Telemetry</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>💬 Chat & Telemetry</h1>
+            <div class="header-controls">
+                <div class="telemetry-status">
+                    <span id="telemetryStatus">Stopped</span>
+                    <button id="toggleTelemetryBtn" class="btn btn-primary">Start Telemetry</button>
+                </div>
+                <div class="app-info" id="appInfo">
+                    Loading app info...
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <!-- Left Panel: Chat -->
+            <section class="panel chat-panel">
+                <div class="panel-header">
+                    <h2>💭 Chat</h2>
+                    <button id="clearChatBtn" class="btn btn-secondary">Clear Chat</button>
+                </div>
+
+                <div class="chat-container">
+                    <div class="messages-container" id="messagesContainer">
+                        <!-- Messages will be inserted here -->
+                        <div class="system-message">
+                            Welcome to Desktop Chat! Type a message below to get started.
+                        </div>
+                    </div>
+
+                    <div class="message-input-container">
+                        <input type="text" id="messageInput" placeholder="Type your message here..." maxlength="500">
+                        <button id="sendMessageBtn" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Telemetry -->
+            <section class="panel telemetry-panel">
+                <div class="panel-header">
+                    <h2>📊 System Telemetry</h2>
+                    <div class="telemetry-controls">
+                        <button id="refreshTelemetryBtn" class="btn btn-secondary">Refresh Now</button>
+                        <button id="clearTelemetryBtn" class="btn btn-secondary">Clear Log</button>
+                    </div>
+                </div>
+
+                <div class="telemetry-container">
+                    <!-- System Overview -->
+                    <div class="telemetry-section">
+                        <h3>🖥️ System Overview</h3>
+                        <div class="metrics-grid">
+                            <div class="metric-card" id="cpuMetric">
+                                <div class="metric-label">CPU Usage</div>
+                                <div class="metric-value">--%</div>
+                                <div class="metric-details">Cores: --</div>
+                            </div>
+                            <div class="metric-card" id="memoryMetric">
+                                <div class="metric-label">Memory Usage</div>
+                                <div class="metric-value">--%</div>
+                                <div class="metric-details">Used: --</div>
+                            </div>
+                            <div class="metric-card" id="uptimeMetric">
+                                <div class="metric-label">System Uptime</div>
+                                <div class="metric-value">--</div>
+                                <div class="metric-details">Hostname: --</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Network Information -->
+                    <div class="telemetry-section">
+                        <h3>🌐 Network Adapters</h3>
+                        <div class="network-interfaces" id="networkInterfaces">
+                            <div class="no-data">No network data available yet</div>
+                        </div>
+                    </div>
+
+                    <!-- Telemetry Log -->
+                    <div class="telemetry-section">
+                        <h3>📝 Telemetry Log</h3>
+                        <div class="telemetry-log" id="telemetryLog">
+                            <div class="log-entry">
+                                <span class="log-time">--:--:--</span>
+                                <span class="log-message">Waiting for telemetry data...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="app-footer">
+            <div class="status-bar">
+                <span id="statusMessage">Ready</span>
+                <span id="lastUpdated">Last updated: --</span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+
+</html>
